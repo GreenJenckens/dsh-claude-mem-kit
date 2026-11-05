@@ -73,15 +73,31 @@ only**, which lands at roughly **10 % of the original observer spend**.
 
 ## Requirements
 
-- Windows 10/11 with **DeepSeek Harness Desktop 0.2.1-rc.5+** (`desktop` profile)
-- **Node.js 20+**, **pnpm 11+**, **Bun 1.1+** on `PATH`
-- Claude-Mem **15.9.0** (the installer fetches it if missing)
+- Windows 10/11, PowerShell 5.1+
+- **DeepSeek Harness Desktop 0.2.1-rc.5+**, opened at least once (so the profile exists)
+- **Node.js 20+** — pnpm and Bun are installed automatically if they are missing
+- Claude-Mem **15.9.0** — fetched automatically if it is missing
 - An observer endpoint: **OpenCode Go** (default, via the bundled bridge) or any
-  OpenAI-compatible `/chat/completions` API
+  OpenAI-compatible `/chat/completions` API. The installer asks for the key.
 
 ## Quick start
 
-### A. Desktop profile (recommended)
+### A. One command (recommended)
+
+```powershell
+irm https://raw.githubusercontent.com/GreenJenckens/dsh-claude-mem-kit/main/scripts/bootstrap.ps1 | iex
+```
+
+[`scripts/bootstrap.ps1`](scripts/bootstrap.ps1) downloads the kit into
+`%LOCALAPPDATA%\dsh-claude-mem-kit` and runs the installer. Prefer to read before
+you run:
+
+```powershell
+irm https://raw.githubusercontent.com/GreenJenckens/dsh-claude-mem-kit/main/scripts/bootstrap.ps1 -OutFile bootstrap.ps1
+powershell -ExecutionPolicy Bypass -File bootstrap.ps1
+```
+
+### B. From a clone
 
 ```powershell
 git clone https://github.com/GreenJenckens/dsh-claude-mem-kit.git
@@ -89,7 +105,12 @@ cd dsh-claude-mem-kit
 powershell -ExecutionPolicy Bypass -File scripts\install.ps1
 ```
 
-The script:
+Useful flags: `-DryRun` (print every action, change nothing), `-AutoInstall`
+(accept automatic pnpm/Bun installation without prompts), `-ObserverKey <key>`
+(skip the key prompt), `-SkipBridge` (you use another OpenAI-compatible endpoint).
+
+The script is idempotent — re-running it repairs the wiring and re-applies the
+tuning. It:
 
 1. bootstraps Claude-Mem's worker and marketplace into
    `~/.claude/plugins/marketplaces/thedotmack` if they are missing

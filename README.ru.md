@@ -36,11 +36,35 @@
 
 ## Установка (Windows)
 
+Нужны Windows 10/11, PowerShell 5.1+, Node.js 20+ и один раз открытый DeepSeek
+Harness Desktop. pnpm, Bun и Claude-Mem скрипт поставит сам, если их нет; ключ
+наблюдателя он спросит в консоли.
+
+Одной командой:
+
+```powershell
+irm https://raw.githubusercontent.com/GreenJenckens/dsh-claude-mem-kit/main/scripts/bootstrap.ps1 | iex
+```
+
+Скрипт скачает набор в `%LOCALAPPDATA%\dsh-claude-mem-kit` и запустит установку.
+Безопаснее сначала посмотреть:
+
+```powershell
+irm https://raw.githubusercontent.com/GreenJenckens/dsh-claude-mem-kit/main/scripts/bootstrap.ps1 -OutFile bootstrap.ps1
+powershell -ExecutionPolicy Bypass -File bootstrap.ps1
+```
+
+Или из клона:
+
 ```powershell
 git clone https://github.com/GreenJenckens/dsh-claude-mem-kit.git
 cd dsh-claude-mem-kit
 powershell -ExecutionPolicy Bypass -File scripts\install.ps1
 ```
+
+Флаги: `-DryRun` (только показать действия), `-AutoInstall` (без вопросов
+доставлять pnpm/Bun), `-ObserverKey <key>` (ключ без запроса), `-SkipBridge`
+(свой OpenAI-совместимый эндпоинт). Скрипт идемпотентный.
 
 Скрипт:
 

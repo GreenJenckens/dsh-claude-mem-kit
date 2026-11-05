@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.1 — 2026-11-05
+
+- One-command install: `scripts/bootstrap.ps1` downloads the kit into
+  `%LOCALAPPDATA%\dsh-claude-mem-kit` and runs the installer.
+- `install.ps1` now checks Node 20+, installs pnpm through corepack/npm when it is
+  missing, offers to install Bun when it is missing, and asks for the observer API
+  key with a masked prompt.
+- Clearer bootstrap message: the official installer can report a failure for its
+  own DSH wiring step; the kit wires the profile itself right after it.
+- New `-AutoInstall` and `-DryRun` switches.
+
 ## 1.0.0 — 2026-11-05
 
 - Initial public kit.
