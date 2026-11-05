@@ -1,0 +1,35 @@
+{
+  "CLAUDE_MEM_PROVIDER": "openai-compatible",
+  "CLAUDE_MEM_OPENAI_COMPAT_PRESET": "",
+  "CLAUDE_MEM_OPENAI_COMPAT_BASE_URL": "http://127.0.0.1:37901/v1",
+  "CLAUDE_MEM_OPENAI_COMPAT_MODEL": "deepseek-v4.1-flash",
+  "CLAUDE_MEM_OPENAI_COMPAT_API_KEY": "<YOUR_OPENCODE_GO_API_KEY>",
+  "CLAUDE_MEM_OPENAI_COMPAT_OBSERVATION_BATCH_SIZE": "4",
+
+  "CLAUDE_MEM_OBSERVER_MAX_CONVERSATION_CHARS": "40000",
+  "CLAUDE_MEM_OBSERVER_MAX_OUTPUT_TOKENS": "3000",
+  "CLAUDE_MEM_OBSERVER_THINKING": "disabled",
+
+  "CLAUDE_MEM_SKIP_TOOLS": "ListMcpResourcesTool,SlashCommand,Skill,TodoWrite,AskUserQuestion,todo_write,ask_user_question,present,skill,load_workspace_dependencies,wait_agent,list_agents,send_message,spawn_teammate,job_list,job_output,job_kill,schedule_list,schedule_create,schedule_update,schedule_delete,team_task_create,team_task_list,team_task_get,team_task_update,create_goal,update_goal,get_goal,terminal_open,terminal_send,terminal_read,terminal_close,terminal_list,working_directory,computer,session_search,session_event_search,session_event_read,session_trace,session_event_trace",
+
+  "CLAUDE_MEM_CONTEXT_OBSERVATIONS": "15",
+  "CLAUDE_MEM_CONTEXT_SESSION_COUNT": "3",
+  "CLAUDE_MEM_CONTEXT_SHOW_LAST_SUMMARY": "false",
+
+  "CLAUDE_MEM_WORK_VIEW_COPY_PROVIDER": "off",
+  "CLAUDE_MEM_WORK_VIEW_AUTO_REFRESH": "false",
+  "CLAUDE_MEM_TIER_ROUTING_ENABLED": "false",
+
+  "CLAUDE_MEM_WORK_STATE_ENABLED": "false",
+  "CLAUDE_MEM_SEMANTIC_INJECT": "false",
+  "CLAUDE_MEM_MEDIA_CAPTURE_ENABLED": "false",
+  "CLAUDE_MEM_DEDUP_ENABLED": "true",
+  "CLAUDE_MEM_REDACT_ENABLED": "true",
+
+  "CLAUDE_MEM_TRANSCRIPTS_ENABLED": "true",
+  "CLAUDE_MEM_TRANSCRIPTS_CONFIG_PATH": "~/.claude-mem/transcript-watch.json",
+  "CLAUDE_MEM_WORKER_AUTOSTART": "true",
+  "CLAUDE_MEM_WORKER_HOST": "127.0.0.1",
+  "CLAUDE_MEM_WORKER_PORT": "37777",
+  "CLAUDE_MEM_LOG_LEVEL": "INFO"
+}

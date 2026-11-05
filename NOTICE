@@ -1,0 +1,23 @@
+dsh-claude-mem-kit
+Copyright 2026 GreenJenckens
+
+This repository is an unofficial installation and tuning kit for Claude-Mem
+(https://github.com/thedotmack/claude-mem), Copyright 2026 Alex Newman,
+licensed under the Apache License, Version 2.0.
+
+The kit installs the DeepSeek Harness adapter that ships with Claude-Mem,
+@claude-mem/dsh. That adapter is itself derived from
+
+    Bleed00/dsh-claude-mem, Copyright 2026 Bleed00, Apache-2.0
+    https://github.com/Bleed00/dsh-claude-mem
+
+No Claude-Mem source code is vendored in this repository. The DSH transcript
+schema embedded into ~/.claude-mem/transcript-watch.json is copied at install
+time from the installed @claude-mem/dsh package.
+
+If you redistribute Claude-Mem code together with this kit, include Claude-Mem's
+LICENSE and NOTICE files, and state the changes you made, as required by
+Apache-2.0.
+
+Claude-Mem, DeepSeek, and DeepSeek Harness are names and trademarks of their
+respective owners. This project is not affiliated with or endorsed by them.

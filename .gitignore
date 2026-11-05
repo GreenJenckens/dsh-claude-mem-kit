@@ -1,0 +1,24 @@
+# Secrets and local state
+.claude-mem/
+*.db
+*.db-wal
+*.db-shm
+settings.json
+.env
+.env.*
+
+# Logs and scratch
+*.log
+tmp/
+.TEMP/
+
+# Node
+node_modules/
+pnpm-lock.yaml
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

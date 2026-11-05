@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "watches": [
+    {
+      "name": "dsh",
+      "path": "~/.dsh/sessions/**/session-*/session.v4.jsonl.zstd",
+      "schema": "dsh",
+      "startAtEnd": true
+    }
+  ],
+  "stateFile": "~/.claude-mem/transcript-watch-state.json"
+}
