@@ -86,7 +86,7 @@ only**, which lands at roughly **10 % of the original observer spend**.
 ```powershell
 git clone https://github.com/GreenJenckens/dsh-claude-mem-kit.git
 cd dsh-claude-mem-kit
-pwsh -File scripts/install.ps1
+powershell -ExecutionPolicy Bypass -File scripts\install.ps1
 ```
 
 The script:
@@ -109,7 +109,7 @@ and the `mem_*` tools.
 
 ```powershell
 npx claude-mem@15.9.0 install --ide dsh --dsh-profile web --no-auto-start
-pwsh -File scripts/apply-tuning.ps1
+powershell -ExecutionPolicy Bypass -File scripts\apply-tuning.ps1
 $w = "$env:USERPROFILE\.claude\plugins\marketplaces\thedotmack\plugin\scripts\worker-service.cjs"
 bun $w restart
 ```
@@ -149,8 +149,8 @@ observations for the project. Worker logs live in
 ## Uninstall
 
 ```powershell
-pwsh -File scripts/uninstall.ps1            # removes wiring + tuning, keeps the database
-pwsh -File scripts/uninstall.ps1 -PurgeData # also moves ~/.claude-mem to a backup folder
+powershell -ExecutionPolicy Bypass -File scripts\uninstall.ps1            # removes wiring + tuning, keeps the database
+powershell -ExecutionPolicy Bypass -File scripts\uninstall.ps1 -PurgeData # also moves ~/.claude-mem to a backup folder
 ```
 
 ## Security notes

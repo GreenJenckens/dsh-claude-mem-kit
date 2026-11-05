@@ -39,7 +39,7 @@
 ```powershell
 git clone https://github.com/GreenJenckens/dsh-claude-mem-kit.git
 cd dsh-claude-mem-kit
-pwsh -File scripts/install.ps1
+powershell -ExecutionPolicy Bypass -File scripts\install.ps1
 ```
 
 Скрипт:
