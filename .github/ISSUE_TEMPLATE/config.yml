@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Read the troubleshooting guide
+    url: https://github.com/GreenJenckens/dsh-claude-mem-kit/blob/main/docs/troubleshooting.md
+    about: Worker, bridge, capture, batching and database-restore problems.
+  - name: Claude-Mem upstream issues
+    url: https://github.com/thedotmack/claude-mem/issues
+    about: Bugs in the memory engine, worker API, or the upstream DSH adapter.

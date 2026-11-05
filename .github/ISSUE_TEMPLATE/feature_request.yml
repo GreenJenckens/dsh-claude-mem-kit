@@ -1,0 +1,38 @@
+name: Feature request
+description: Suggest a platform, a cost knob, or a workflow improvement
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the workflow that is currently painful or expensive.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: A script flag, a setting, a doc section — anything concrete.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - installer
+        - observer bridge
+        - cost tuning
+        - Windows
+        - Linux
+        - macOS
+        - documentation
+        - other
+    validations:
+      required: true

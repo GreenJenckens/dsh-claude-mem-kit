@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: validate (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Node syntax
+        shell: bash
+        run: |
+          for f in proxy/server.mjs scripts/lib/*.mjs; do
+            node --check "$f"
+            echo "OK $f"
+          done
+
+      - name: Shell syntax
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          for f in scripts/*.sh proxy/*.sh; do
+            bash -n "$f"
+            echo "OK $f"
+          done
+
+      - name: PowerShell parse
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Get-ChildItem scripts/*.ps1 | ForEach-Object {
+            $null = [scriptblock]::Create((Get-Content $_.FullName -Raw))
+            Write-Host "OK $($_.Name)"
+          }
+
+      - name: JSON validity
+        shell: bash
+        run: |
+          node -e "for (const f of ['config/settings.example.json','config/transcript-watch.example.json']) { JSON.parse(require('fs').readFileSync(f,'utf8')); console.log('OK ' + f) }"
+
+      - name: No committed secrets
+        shell: bash
+        run: |
+          if grep -RInE 'oc_sk_[A-Za-z0-9]|pza_[A-Za-z0-9]|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY' \
+              --exclude-dir=.git --exclude-dir=node_modules .; then
+            echo "::error::possible secret committed"
+            exit 1
+          fi
+          echo "OK no secrets found"
+
+      - name: Installer dry run (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./scripts/install.ps1 -DryRun -Profile web
+
+      - name: Installer dry run (Unix)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: bash scripts/install.sh --dry-run --profile web

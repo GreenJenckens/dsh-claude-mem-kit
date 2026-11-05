@@ -9,15 +9,24 @@ claude-mem observer ──▶ http://127.0.0.1:37901/v1 ──▶ https://openco
 
 ## Run
 
+Windows:
+
 ```powershell
 .\run-proxy.cmd           # foreground, logs to %USERPROFILE%\.claude-mem\proxy.log
 wscript start-hidden.vbs  # no console window
 ```
 
-Autostart: put a shortcut to `start-hidden.vbs` into
-`%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup`
-(shared\install.ps1 does it), or skip the bridge entirely and point
-`CLAUDE_MEM_OPENAI_COMPAT_BASE_URL` at any other OpenAI-compatible endpoint.
+Linux / macOS:
+
+```bash
+./run-proxy.sh            # foreground, logs to ~/.claude-mem/proxy.log
+nohup ./run-proxy.sh &    # or let install.sh register a systemd unit / LaunchAgent
+```
+
+Autostart is registered by the installer: a Startup shortcut on Windows, a
+systemd user unit (or an XDG autostart entry) on Linux, a LaunchAgent on macOS.
+Skip the bridge entirely if you point `CLAUDE_MEM_OPENAI_COMPAT_BASE_URL` at any
+other OpenAI-compatible endpoint.
 
 ## Environment
 

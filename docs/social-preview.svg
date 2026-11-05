@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-label="dsh-claude-mem-kit — persistent memory for DeepSeek Harness">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0f17"/>
+      <stop offset="0.6" stop-color="#0d1320"/>
+      <stop offset="1" stop-color="#111a2e"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4d6bfe"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4d6bfe" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <ellipse cx="1100" cy="80" rx="420" ry="260" fill="url(#glow)"/>
+
+  <g opacity="0.08" stroke="#8ea0ff" stroke-width="1">
+    <path d="M0 160h1280M0 320h1280M0 480h1280"/>
+    <path d="M160 0v640M320 0v640M480 0v640M640 0v640M800 0v640M960 0v640M1120 0v640"/>
+  </g>
+
+  <rect x="64" y="130" width="8" height="200" rx="4" fill="url(#bar)"/>
+
+  <text x="104" y="196" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="58" font-weight="700" fill="#f8fafc">dsh-claude-mem-kit</text>
+  <text x="106" y="252" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" fill="#93c5fd">persistent memory for DeepSeek Harness</text>
+  <text x="106" y="308" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="21" fill="#94a3b8">native mem_* tools · transcript capture · ~10× cheaper observer</text>
+
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="19">
+    <rect x="104" y="360" width="300" height="46" rx="12" fill="#0f172a" stroke="#1e293b"/>
+    <text x="126" y="389" fill="#cbd5e1">Windows · Linux · macOS</text>
+
+    <rect x="424" y="360" width="230" height="46" rx="12" fill="#0f172a" stroke="#2b3a67"/>
+    <circle cx="448" cy="383" r="6" fill="#22c55e"/>
+    <text x="466" y="389" fill="#e2e8f0">observer ≈10%</text>
+
+    <rect x="674" y="360" width="230" height="46" rx="12" fill="#0f172a" stroke="#1e293b"/>
+    <text x="696" y="389" fill="#cbd5e1">claude-mem 15.9</text>
+  </g>
+
+  <text x="104" y="470" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="20" fill="#64748b">github.com/GreenJenckens/dsh-claude-mem-kit</text>
+  <text x="104" y="512" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="17" fill="#475569">unofficial · MIT · not affiliated with Claude-Mem or DeepSeek</text>
+
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="16">
+    <rect x="840" y="180" width="360" height="52" rx="12" fill="#0f172a" stroke="#1e293b"/>
+    <text x="864" y="213" fill="#cbd5e1">~/.dsh/sessions/*.jsonl.zstd</text>
+
+    <rect x="840" y="248" width="360" height="52" rx="12" fill="#0f172a" stroke="#2b3a67"/>
+    <circle cx="866" cy="274" r="6" fill="#22c55e"/>
+    <text x="886" y="280" fill="#e2e8f0">claude-mem worker :37777</text>
+
+    <rect x="840" y="316" width="360" height="52" rx="12" fill="#0f172a" stroke="#1e293b"/>
+    <text x="864" y="349" fill="#cbd5e1">mem_search · mem_context</text>
+  </g>
+</svg>

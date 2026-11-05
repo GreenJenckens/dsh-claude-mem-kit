@@ -1,4 +1,4 @@
-# dsh-claude-mem-kit — apply only the cost profile to an existing Claude-Mem
+# dsh-claude-mem-kit - apply only the cost profile to an existing Claude-Mem
 # installation (no DSH profile changes).
 #
 # MIT License, Copyright (c) 2026 GreenJenckens.

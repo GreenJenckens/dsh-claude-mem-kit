@@ -2,6 +2,12 @@
 
 Logs: `~/.claude-mem/logs/claude-mem-<date>.log`
 
+> On Linux/macOS every `powershell`/`curl.exe` snippet below has a direct
+> equivalent: `curl`, `~/.claude-mem/...`, and the installer scripts
+> `scripts/install.sh` / `scripts/uninstall.sh`. The worker restart command is
+> the same on all platforms:
+> `bun "$HOME/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs" restart`.
+
 ## The plugin does not appear in DeepSeek Harness
 
 1. Check the profile manifest: `~/.dsh/profiles/<profile>/package.json` must contain

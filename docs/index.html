@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dsh-claude-mem-kit — persistent memory for DeepSeek Harness</title>
+<meta name="description" content="Cross-session memory for DeepSeek Harness (DSH): native claude-mem integration with mem_search tools, automatic transcript capture, and about 10x lower observer cost. Windows, Linux, macOS.">
+<meta name="keywords" content="DeepSeek Harness, DSH, claude-mem, agent memory, cross-session memory, persistent memory, mem_search, AI coding agent, OpenCode, cost optimization">
+<link rel="canonical" href="https://greenjenckens.github.io/dsh-claude-mem-kit/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="dsh-claude-mem-kit — persistent memory for DeepSeek Harness">
+<meta property="og:description" content="Native claude-mem integration for DeepSeek Harness: mem_search tools, transcript capture, ~10x cheaper observer. Windows, Linux, macOS.">
+<meta property="og:url" content="https://greenjenckens.github.io/dsh-claude-mem-kit/">
+<meta property="og:image" content="https://greenjenckens.github.io/dsh-claude-mem-kit/banner.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234d6bfe'/%3E%3Cpath d='M9 22V10h4l3 6 3-6h4v12h-3v-7l-3 6h-2l-3-6v7z' fill='%23fff'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "dsh-claude-mem-kit",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Windows, Linux, macOS",
+  "description": "Unofficial cost-tuned claude-mem integration for DeepSeek Harness (DSH): native mem_search tools, transcript capture, ~10x lower observer spend.",
+  "url": "https://github.com/GreenJenckens/dsh-claude-mem-kit",
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+  :root {
+    --bg: #0b0f17;
+    --panel: #0f172a;
+    --border: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #4d6bfe;
+    --accent2: #8b5cf6;
+    --green: #22c55e;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(900px 420px at 85% -10%, rgba(77,107,254,.18), transparent 60%),
+      radial-gradient(700px 380px at 0% 20%, rgba(139,92,246,.10), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  a { color: #9db2ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 56px 0 24px; }
+  .banner { width: 100%; border-radius: 14px; border: 1px solid var(--border); display: block; }
+  h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.15; margin: 34px 0 12px; letter-spacing: -0.02em; }
+  .lead { font-size: 18px; color: #cbd5e1; max-width: 780px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; }
+  .chip {
+    font: 13px/1 var(--mono); color: #cbd5e1; background: var(--panel);
+    border: 1px solid var(--border); border-radius: 999px; padding: 8px 12px;
+  }
+  .chip b { color: #fff; font-weight: 600; }
+  .chip.green { border-color: rgba(34,197,94,.35); color: #86efac; }
+  section { padding: 42px 0 8px; }
+  h2 { font-size: 24px; margin: 0 0 14px; letter-spacing: -0.01em; }
+  h3 { font-size: 16px; margin: 0 0 6px; }
+  p { color: #cbd5e1; }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card {
+    background: linear-gradient(180deg, rgba(255,255,255,.02), transparent), var(--panel);
+    border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px;
+  }
+  .card p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .install { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .cmd { position: relative; background: #070b12; border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px 18px; }
+  .cmd .os { font: 12px/1 var(--mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+  .cmd pre { margin: 10px 0 0; white-space: pre-wrap; word-break: break-word; font: 13.5px/1.6 var(--mono); color: #dbeafe; }
+  .copy {
+    position: absolute; top: 12px; right: 12px; font: 12px/1 var(--mono);
+    color: #cbd5e1; background: #0f172a; border: 1px solid var(--border);
+    border-radius: 8px; padding: 7px 10px; cursor: pointer;
+  }
+  .copy:hover { border-color: var(--accent); color: #fff; }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: #cbd5e1; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+  td { color: #cbd5e1; }
+  td code, p code { font-family: var(--mono); font-size: .92em; color: #dbeafe; }
+  .diagram { background: #070b12; border: 1px solid var(--border); border-radius: 12px; padding: 18px; overflow-x: auto; }
+  .diagram pre { margin: 0; font: 13px/1.7 var(--mono); color: #cbd5e1; }
+  .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .btn {
+    display: inline-block; padding: 11px 16px; border-radius: 10px; font-weight: 600; font-size: 14.5px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #fff; border: 0;
+  }
+  .btn.secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  footer { margin-top: 56px; padding: 28px 0 46px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+  .notice { border-left: 3px solid var(--accent); padding: 10px 16px; background: rgba(77,107,254,.06); border-radius: 0 10px 10px 0; color: #cbd5e1; font-size: 14.5px; }
+  @media (max-width: 560px) { header { padding-top: 32px; } .lead { font-size: 16px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <img class="banner" src="banner.svg" alt="dsh-claude-mem-kit — persistent memory for DeepSeek Harness">
+  <h1>Persistent memory for DeepSeek Harness</h1>
+  <p class="lead">A cross-session memory layer for <b>DeepSeek Harness (DSH)</b> agents, built on <b>Claude-Mem</b>: native <code>mem_search</code> tools, automatic transcript capture, and roughly <b>10× lower observer cost</b> than the default setup.</p>
+  <div class="chips">
+    <span class="chip"><b>MIT</b> license</span>
+    <span class="chip"><b>claude-mem</b> 15.9.0</span>
+    <span class="chip green">observer spend ≈10%</span>
+    <span class="chip">Windows · Linux · macOS</span>
+    <span class="chip">unofficial</span>
+  </div>
+</header>
+
+<section id="install">
+  <h2>Install with one command</h2>
+  <div class="install">
+    <div class="cmd">
+      <span class="os">Windows · PowerShell</span>
+      <button class="copy" data-copy="irm https://raw.githubusercontent.com/GreenJenckens/dsh-claude-mem-kit/main/scripts/bootstrap.ps1 | iex">copy</button>
+      <pre>irm https://raw.githubusercontent.com/GreenJenckens/dsh-claude-mem-kit/main/scripts/bootstrap.ps1 | iex</pre>
+    </div>
+    <div class="cmd">
+      <span class="os">Linux / macOS · bash</span>
+      <button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/GreenJenckens/dsh-claude-mem-kit/main/scripts/bootstrap.sh | bash -s -- --profile web">copy</button>
+      <pre>curl -fsSL https://raw.githubusercontent.com/GreenJenckens/dsh-claude-mem-kit/main/scripts/bootstrap.sh | bash -s -- --profile web</pre>
+    </div>
+  </div>
+  <p style="margin-top:14px">Requires Node.js 20+ and an existing DSH profile (the desktop app, or <code>dsh</code> CLI for <code>web</code>/<code>tui</code>). The installer provisions Claude-Mem, pnpm and Bun when missing, asks for the observer API key, and finishes by wiring the autostart bridge.</p>
+  <div class="notice">Unofficial community kit. Not affiliated with or endorsed by the Claude-Mem project, DeepSeek, or the DSH adapter authors.</div>
+</section>
+
+<section id="features">
+  <h2>What you get</h2>
+  <div class="grid">
+    <div class="card"><h3>Native plugin, not a bridge</h3><p>Upstream <code>@claude-mem/dsh</code> registers <code>mem_search</code>, <code>mem_timeline</code>, <code>mem_get_observations</code>, <code>mem_save</code>, <code>mem_context</code> and a memory skill.</p></div>
+    <div class="card"><h3>Automatic capture</h3><p>The worker tails DSH session transcripts and turns tool activity into durable observations — no hooks inside the agent.</p></div>
+    <div class="card"><h3>Top-level only</h3><p>Subagent transcripts are skipped: 78 % of historical observations came from subagent churn whose results the parent already holds.</p></div>
+    <div class="card"><h3>Batched observer</h3><p>Up to four tool events per request, short conversation generations, and 41 noisy DSH meta-tools skipped.</p></div>
+    <div class="card"><h3>Context on start</h3><p>New sessions begin with a compact block of recent observations for the project.</p></div>
+    <div class="card"><h3>Repeatable install</h3><p>Idempotent installers with <code>--dry-run</code>, backups, and a matching uninstall for all three platforms.</p></div>
+  </div>
+</section>
+
+<section id="cost">
+  <h2>Cost, measured</h2>
+  <table>
+    <tr><th>Metric</th><th>Default claude-mem</th><th>This kit</th></tr>
+    <tr><td>Observer input tokens per event</td><td>≈10 900</td><td>≈5 700</td></tr>
+    <tr><td>Events processed</td><td>100 % (186 transcripts)</td><td>≈22 % (91 top-level)</td></tr>
+    <tr><td>Estimated total spend</td><td>100 %</td><td><b>≈10–12 %</b></td></tr>
+  </table>
+  <p>More: <a href="https://github.com/GreenJenckens/dsh-claude-mem-kit/blob/main/docs/cost-tuning.md">cost tuning guide</a>.</p>
+</section>
+
+<section id="how">
+  <h2>How it works</h2>
+  <div class="diagram"><pre>DSH session
+   │ writes
+   ▼
+~/.dsh/sessions/**/session-*/session.v4.jsonl.zstd
+   │ transcript-watch.json (schema: dsh)
+   ▼
+claude-mem worker :37777  ──▶  SQLite + Chroma (local)
+   │ observer requests (batched)
+   ▼
+loopback bridge   :37901  ──▶  OpenCode Go / any OpenAI-compatible endpoint
+   │
+   ▼
+DSH plugin: context on agent/created + mem_* tools</pre></div>
+</section>
+
+<section id="links">
+  <h2>Links</h2>
+  <div class="links">
+    <a class="btn" href="https://github.com/GreenJenckens/dsh-claude-mem-kit">GitHub repository</a>
+    <a class="btn secondary" href="https://github.com/GreenJenckens/dsh-claude-mem-kit/releases">Releases</a>
+    <a class="btn secondary" href="https://github.com/GreenJenckens/dsh-claude-mem-kit/blob/main/README.ru.md">По-русски</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 GreenJenckens · MIT license. Built on <a href="https://github.com/thedotmack/claude-mem">Claude-Mem</a> (Apache-2.0, © 2026 Alex Newman) and the DSH adapter derived from <a href="https://github.com/Bleed00/dsh-claude-mem">Bleed00/dsh-claude-mem</a>. Claude-Mem, DeepSeek and DeepSeek Harness are trademarks of their respective owners. This project is unofficial and not endorsed by them.</p>
+</footer>
+
+</div>
+<script>
+document.querySelectorAll('.copy').forEach(function (button) {
+  button.addEventListener('click', function () {
+    var text = button.getAttribute('data-copy');
+    var done = function () { button.textContent = 'copied'; setTimeout(function () { button.textContent = 'copy'; }, 1500); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, done);
+    } else {
+      var area = document.createElement('textarea');
+      area.value = text; document.body.appendChild(area); area.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(area); done();
+    }
+  });
+});
+</script>
+</body>
+</html>

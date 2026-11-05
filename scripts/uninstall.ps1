@@ -1,4 +1,4 @@
-# dsh-claude-mem-kit — remove the DSH wiring, stop the services and optionally
+# dsh-claude-mem-kit - remove the DSH wiring, stop the services and optionally
 # move the memory database aside.
 #
 # MIT License, Copyright (c) 2026 GreenJenckens.

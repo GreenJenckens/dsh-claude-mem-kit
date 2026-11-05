@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.0 — 2026-11-05
+
+- **Linux and macOS support**: `scripts/install.sh`, `scripts/uninstall.sh`,
+  `scripts/bootstrap.sh`, `proxy/run-proxy.sh`, with systemd user units, macOS
+  LaunchAgents, and XDG autostart as bridge fallbacks.
+- `--dry-run` / `-DryRun` now prints a resolved plan (profile, paths, steps)
+  instead of partially executing.
+- Landing page in `docs/` with SEO/Open Graph metadata, published with GitHub
+  Pages; CI matrix on Ubuntu, macOS, and Windows; issue templates;
+  CONTRIBUTING and Code of Conduct.
+- README rewritten around platforms, FAQ, and search-friendly wording.
+
 ## 1.0.1 — 2026-11-05
 
 - One-command install: `scripts/bootstrap.ps1` downloads the kit into

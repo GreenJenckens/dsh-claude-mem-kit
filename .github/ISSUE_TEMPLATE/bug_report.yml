@@ -1,0 +1,71 @@
+name: Bug report
+description: The installer or the memory integration does not work as expected
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please run the installer with `-DryRun` / `--dry-run`
+        and include the output when possible. Do not paste API keys or memory contents.
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows 10/11
+        - Linux
+        - macOS
+        - Other (explain below)
+    validations:
+      required: true
+  - type: dropdown
+    id: profile
+    attributes:
+      label: DSH profile
+      options:
+        - desktop
+        - web
+        - tui
+        - other / not sure
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: "Node, pnpm, Bun, Claude-Mem, DSH"
+      placeholder: "node 22.12, pnpm 11.28, bun 1.4, claude-mem 15.9.0, DSH 0.2.1-rc.5"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Clone the repository
+        2. Run scripts/install.sh --profile web
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: "`install` output, `~/.claude-mem/logs/claude-mem-<date>.log` tail, health endpoints"
+      render: text
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I did not paste API keys, tokens, or database contents.
+          required: true
+        - label: I checked docs/troubleshooting.md.
+          required: false

@@ -1,4 +1,4 @@
-# dsh-claude-mem-kit — one-command bootstrap.
+# dsh-claude-mem-kit - one-command bootstrap.
 #
 # Downloads the latest kit from GitHub and runs scripts\install.ps1 with the
 # usual options. MIT License, Copyright (c) 2026 GreenJenckens.
